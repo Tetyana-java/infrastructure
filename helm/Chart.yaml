@@ -1,0 +1,5 @@
+apiVersion: v2
+name: spoonacular-chart
+description: Helm chart for Spoonacular Spring Boot app with RDS & ALB
+version: 0.1.0
+appVersion: "1.0.0"

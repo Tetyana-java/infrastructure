@@ -1,0 +1,38 @@
+# General app settings
+name: spoonacular-app
+replicaCount: 2
+namespace: default
+serviceAccount:
+  create: true
+  name: spoonacular-sa
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::270770993091:role/spoonacular-irsa-role
+containerPort: 8080
+
+# Image info
+image:
+  repository: 270770993091.dkr.ecr.us-east-1.amazonaws.com/spoonacular-app
+  tag: 0.0.1-SNAPSHOT-c28e86b
+
+# Secrets Store CSI Driver
+secretProviderClass: spoonacular-postgres
+
+# Ingress / ALB
+ingress:
+  enabled: true
+  className: alb
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+  host: ""
+  path: /
+  pathType: Prefix
+
+# DB secret (AWS Secrets Manager object)
+awsSecretName: spoonacular-dev/postgres
+k8sSecretName: spoonacular-db-secret
+
+# DB connection
+dbHost: spoonacular-dev-db.cermqy24eyt2.us-east-1.rds.amazonaws.com
+dbName: spoonacular
+

@@ -1,2 +1,24 @@
 terraform init
+terraform import aws_secretsmanager_secret.postgres spoonacular-dev_new/postgres
 terraform apply -var-file=dev.tfvars
+
+aws eks update-kubeconfig \
+  --region us-east-1 \
+  --name spoonacular-dev-eks \
+  --profile my-user
+
+kubectl get nodes
+
+
+# Install
+helm install spoonacular . -f values.yaml
+
+# Upgrade (for new image or config)
+helm upgrade spoonacular . -f values.yaml
+
+# Uninstall
+helm uninstall spoonacular
+
+
+# Restart pods to pick up new secret
+kubectl rollout restart deployment spoonacular-app
