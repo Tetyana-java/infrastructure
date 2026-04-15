@@ -22,7 +22,6 @@ module "eks" {
 
   access_entries = {
 
-    # 👤 DIRECT IAM USER ACCESS (FIX)
     my_user = {
       principal_arn = "arn:aws:iam::270770993091:user/my-user"
 

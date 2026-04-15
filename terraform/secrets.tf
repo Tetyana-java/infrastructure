@@ -1,5 +1,5 @@
 resource "aws_secretsmanager_secret" "postgres" {
-  name        = "${local.name_prefix}/postgres"
+  name        = "${local.name_prefix}_new_test_my/postgres"
   description = "Postgres credentials"
 
   tags = local.tags

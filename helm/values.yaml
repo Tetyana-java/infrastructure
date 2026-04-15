@@ -12,7 +12,7 @@ containerPort: 8080
 # Image info
 image:
   repository: 270770993091.dkr.ecr.us-east-1.amazonaws.com/spoonacular-app
-  tag: 0.0.1-SNAPSHOT-c28e86b
+  tag: 0.0.1-SNAPSHOT
 
 # Secrets Store CSI Driver
 secretProviderClass: spoonacular-postgres
@@ -24,12 +24,13 @@ ingress:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/healthcheck-path: /actuator/health
   host: ""
   path: /
   pathType: Prefix
 
 # DB secret (AWS Secrets Manager object)
-awsSecretName: spoonacular-dev/postgres
+awsSecretName: spoonacular-dev_new_test_my/postgres
 k8sSecretName: spoonacular-db-secret
 
 # DB connection
